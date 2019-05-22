@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Subhradeep_bmi</string>
+    <string name="weight">Weight </string>
+    <string name="height">Height </string>
+    <string name="calculateBMI">Calculate BMI</string>
+    <string name="w">in kg</string>
+    <string name="h">in cm</string>
+    <string name="very_severely_underweight">Very severely underweight</string>
+    <string name="severely_underweight">Severely underweight</string>
+    <string name="underweight">Underweight</string>
+    <string name="normal">Normal</string>
+    <string name="overweight">Overweight</string>
+    <string name="obese_class_i">Obese Class I (moderately obese)</string>
+    <string name="obese_class_ii">Obese Class II (severely obese)</string>
+    <string name="obese_class_iii">Obese Class III (very severely obese)</string>
+
+</resources>
