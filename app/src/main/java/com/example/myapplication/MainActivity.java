@@ -32,49 +32,54 @@ public class MainActivity extends AppCompatActivity {
 
     String heightStr = height.getText().toString();
     String weightStr = weight.getText().toString();
+        String invalid="Please enter the weight value";
+        String invalid2="Please enter the height value";
+        String invalid3="Please enter height and weight value";
+
     if(!"".equals(heightStr)&&!"".equals(weightStr))
     {
         float heightValue = Float.parseFloat(heightStr) / 100;
         float weightValue = Float.parseFloat(weightStr);
         float bmi = weightValue / (heightValue * heightValue);
-        displayBMI(bmi);
+        displayBMI(bmi,heightValue,weightValue);
     }
+    else if("".equals(heightStr)&&!"".equals(weightStr))
+        result.setText(invalid2);
+    else if(!"".equals(heightStr)&&"".equals(weightStr))
+        result.setText(invalid);
+    else
+        result.setText(invalid3);
+
 }
-private void displayBMI(float bmi)
+private void displayBMI(float bmi,float heightvalue,float weightvalue)
 {
     String bmiLabel="";
-    if(Float.compare(bmi,15f)<=0)
-    {
-        bmiLabel=getString(R.string.very_severely_underweight);}
-    else if(Float.compare(bmi,15f)>0&&Float.compare(bmi,16f)<=0)
-    {
-        bmiLabel=getString(R.string.severely_underweight);
+    if(Float.compare(heightvalue,0f)!=0&&Float.compare(weightvalue,0f)!=0) {
+        if (Float.compare(bmi, 15f) <= 0) {
+            bmiLabel = getString(R.string.very_severely_underweight);
+        } else if (Float.compare(bmi, 15f) > 0 && Float.compare(bmi, 16f) <= 0) {
+            bmiLabel = getString(R.string.severely_underweight);
+        } else if (Float.compare(bmi, 16f) > 0 && Float.compare(bmi, 18.5f) <= 0) {
+            bmiLabel = getString(R.string.underweight);
+        } else if (Float.compare(bmi, 18.5f) > 0 && Float.compare(bmi, 25f) <= 0) {
+            bmiLabel = getString(R.string.normal);
+        } else if (Float.compare(bmi, 25f) > 0 && Float.compare(bmi, 30f) <= 0) {
+            bmiLabel = getString(R.string.overweight);
+        } else if (Float.compare(bmi, 30f) > 0 && Float.compare(bmi, 35f) <= 0) {
+            bmiLabel = getString(R.string.obese_class_i);
+        } else if (Float.compare(bmi, 35f) > 0 && Float.compare(bmi, 40f) <= 0) {
+            bmiLabel = getString(R.string.obese_class_ii);
+        } else {
+            bmiLabel = getString(R.string.obese_class_iii);
+        }
+        bmiLabel = bmi + "\n\n" + bmiLabel;
     }
-    else if(Float.compare(bmi,16f)>0&&Float.compare(bmi,18.5f)<=0)
-    {
-        bmiLabel=getString(R.string.underweight);
-    }
-    else if(Float.compare(bmi,18.5f)>0&&Float.compare(bmi,25f)<=0)
-    {
-        bmiLabel=getString(R.string.normal);
-    }
-    else if(Float.compare(bmi,25f)>0&&Float.compare(bmi,30f)<=0)
-    {
-        bmiLabel=getString(R.string.overweight);
-    }
-    else if(Float.compare(bmi,30f)>0&&Float.compare(bmi,35f)<=0)
-    {
-        bmiLabel=getString(R.string.obese_class_i);
-    }
-    else if(Float.compare(bmi,35f)>0&&Float.compare(bmi,40f)<=0)
-    {
-        bmiLabel=getString(R.string.obese_class_ii);
-    }
+    else if(Float.compare(heightvalue,0f)!=0&&Float.compare(weightvalue,0f)==0)
+        bmiLabel="Please enter a valid (non-zero) weight";
+    else if(Float.compare(heightvalue,0f)==0&&Float.compare(weightvalue,0f)!=0)
+        bmiLabel="Please enter a valid (non-zero) height";
     else
-    {
-        bmiLabel=getString(R.string.obese_class_iii);
-    }
-    bmiLabel=bmi+"\n\n"+bmiLabel;
+        bmiLabel="Please enter valid (non-zero) weight and height";
     result.setText(bmiLabel);
 }
 }
